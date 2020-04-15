@@ -1,4 +1,4 @@
-# **123-Movies API** (version v1.0.0)
+# 🚩 **123-Movies API** (version v1.0.0)
 *The API 123Movies is a library that provides an extensive catalog of movies and series from the 123-movies.com platform. This allows access to all the videos of each movie and episodes of each series with audio in English.*
 
 ---
@@ -53,4 +53,4 @@ _*Chris Michael*_
 
 ---
 
-Copyright © 2020 [COVID19 API](https://github.com/ChrisMichaelPerezSantiago/covid19).
+Copyright © 2020 [123-Movies API](https://github.com/ChrisMichaelPerezSantiago/123-movies).
