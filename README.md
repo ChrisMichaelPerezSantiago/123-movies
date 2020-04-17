@@ -1,18 +1,18 @@
 # 🚩 **123-Movies API** (version v1.0.0)
+
+<img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />          
+<img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+<img src="https://img.shields.io/badge/123MOVIES-API-blue" alt="">
+
+<a href="https://nodei.co/npm/123-movies/"><img src="https://nodei.co/npm/123-movies.png"></a>
+
 *The API 123Movies is a library that provides an extensive catalog of movies and series from the 123-movies.com platform. This allows access to all the videos of each movie and episodes of each series with audio in English.*
 
 ---
 
-## ⚠️ Project in development
-*More information will be released from the library in the coming days/weeks.*
 
+# 📝123-Movies API
 
-## **Donations**
-
-<a href="https://www.buymeacoffee.com/chrismichael" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
-
-## 📝123-Movies API
----
 
 ### PluginManager.getMovies([page])
 
@@ -181,6 +181,11 @@ massive particle accelerator accident leads to Barry being struck by lightning i
   ]
 ]
 ```
+
+
+## **Donations**
+
+<a href="https://www.buymeacoffee.com/chrismichael" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
 
 
 ## **:handshake: Contributing**
