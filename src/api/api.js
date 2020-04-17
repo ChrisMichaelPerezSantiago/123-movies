@@ -51,7 +51,7 @@ const getMovies = async(page) =>{
  * @param {number} page actual page, range [1 .. 208] 
  * 
  **/
-const getTVSeries = async(page = 1) =>{
+const getTVSeries = async(page) =>{
   try{
     const res = await requests(`${BASE_URL}/tvseries?page=${page}`);
     const $ = cheerio.load(res);
@@ -77,7 +77,7 @@ const getTVSeries = async(page = 1) =>{
       let episodes = await getEpisodeList(realID);
 
       resolve({
-        id: id || null,
+        //id: id || null,
         title: title || null,
         poster: poster || null,
         description: description || null,
@@ -173,3 +173,9 @@ const getVideoURL = async(url) =>{
     console.log(err)
   }
 };
+
+module.exports = {
+  getMovies,
+  getTVSeries,
+  getVideoURL
+}
