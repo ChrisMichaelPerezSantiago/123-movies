@@ -2,14 +2,20 @@ const cheerio = require('cheerio');
 const {BASE_URL} = require('./url');
 const {requests , requestIframeWithAttrSandBox , getDecimalNumber , urlify} = require('../util/index');
 
-const getMovies = async(page = 1) =>{
+
+/**
+ * @param {number} page actual page, range [1 .. 1222] 
+ * 
+ **/
+const getMovies = async(page) =>{
   const res = await requests(`${BASE_URL}/movies?page=${page}`);
   const $ = cheerio.load(res);
   const promise = [];
 
   $('div.videosContainer div.featuredItems').each(async(index , element) =>{
     const $element = $(element);
-    const id = $element.find('a').attr('href');
+    const id = `${$element.find('a').attr('href')}watching.html`;
+    const quality = $element.find('a span.mli-quality').text().trim();
     const title = $element.find('span.mli-info h2').text().trim();
     const poster = $element.find('img.lazy').attr('src');
     const description = $element.find('div.popcontents p.f-desc').text().trim();
@@ -34,25 +40,24 @@ const getMovies = async(page = 1) =>{
       genres: _genres || null,
       year: year || null,
       episode_length: episode_length || null,
+      quality: quality || null
     });
   });
 
   return Promise.all(promise);
 };
 
-//getMovies()
-//  .then(res =>{
-//    console.log(res)
-//  })
-
-
+/**
+ * @param {number} page actual page, range [1 .. 208] 
+ * 
+ **/
 const getTVSeries = async(page = 1) =>{
   try{
     const res = await requests(`${BASE_URL}/tvseries?page=${page}`);
     const $ = cheerio.load(res);
     const promise = [];
 
-    $('div.videosContainer div.featuredItems').each(async(index , element) =>{
+    const promises = $('div.videosContainer div.featuredItems').map((index, element) => new Promise(async (resolve) => {
       const $element = $(element);
       const id = $element.find('a').attr('href');
       const title = $element.find('span.mli-info h2').text().trim();
@@ -68,10 +73,10 @@ const getTVSeries = async(page = 1) =>{
       const year = $element.find('div.jtip-top div.jt-info').eq(1).text().trim();
       const episode_length = $element.find('div.jtip-top div.jt-info').eq(2).text().trim();
 
-      //let realID = await getRealEpisodesListURL(id);
-      //let episodes = await getEpisodeList(realID);
+      let realID = await getRealEpisodesListURL(id);
+      let episodes = await getEpisodeList(realID);
 
-      promise.push({
+      resolve({
         id: id || null,
         title: title || null,
         poster: poster || null,
@@ -80,21 +85,17 @@ const getTVSeries = async(page = 1) =>{
         genres: _genres || null,
         year: year || null,
         episode_length: episode_length || null,
-        //episodes: episodes || null,
+        episodes: episodes || null,
       })
-    });
+    }));
 
-    return Promise.all(promise);
+    const data = promises.get();
+    return Promise.all(data);
 
   }catch(err){
     console.log(err);
   }
 };
-
-//getTVSeries()
-//  .then(res =>{
-//    console.log(res)
-//  })
 
 const getEpisodeList = async(url) =>{
   try{
@@ -117,7 +118,7 @@ const getEpisodeList = async(url) =>{
   }
 };
 
-const getRealEpisodesListURL = async(id) =>{
+const getRealEpisodesListURL = (id) =>{
   return new Promise(async(resolve , reject) =>{
     const res = await requests(id);
     const $  = cheerio.load(res);
@@ -163,10 +164,10 @@ const getVideoURL = async(url) =>{
       });
     });
   
-  const video = await promise;
-  const data = [{data: video}]
+    const video = await promise;
+    const data = [{data: video}]
   
-  return Promise.all(data);
+    return Promise.all(data);
 
   }catch(err){
     console.log(err)
