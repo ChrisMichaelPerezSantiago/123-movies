@@ -1,7 +1,6 @@
 # 🚩 **123-Movies API** (version v1.0.0)
 
-<img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />          
-<img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+<img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg">          <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg">
 <img src="https://img.shields.io/badge/123MOVIES-API-blue" alt="">
 
 <a href="https://nodei.co/npm/123-movies/"><img src="https://nodei.co/npm/123-movies.png"></a>
