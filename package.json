@@ -2,7 +2,7 @@
   "name": "123-movies",
   "version": "1.0.0",
   "description": "The API 123Movies is a library that provides an extensive catalog of movies and series from the 123-movies.com platform. This allows access to all the videos of each movie and episodes of each series with audio in English.",
-  "main": "./src/api/index.js",
+  "main": "./src/PluginManager/index.js",
   "dependencies": {
     "axios": "^0.19.2",
     "cheerio": "^1.0.0-rc.3",
@@ -13,7 +13,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start:api": "nodemon ./src/api/api"
+    "start:api": "nodemon ./src/api/api",
+    "start:plugin": "nodemon ./src/PluginManager/test"
   },
   "keywords": [
     "123-movies",
